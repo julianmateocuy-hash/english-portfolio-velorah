@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 201 100% 13%;
+  --foreground: 0 0% 100%;
+  --muted-foreground: 240 4% 66%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 10%;
+  --muted: 0 0% 10%;
+  --accent: 0 0% 10%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --font-display: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(255,255,255,.22);
+  color: white;
+}
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%,
+    rgba(255,255,255,0.45) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glass-card {
+  background: rgba(255,255,255,.035);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.08);
+}
+
+.project-card {
+  transition: transform .4s ease, border-color .4s ease, background .4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.045);
+}
+
+.eyebrow {
+  color: hsl(var(--muted-foreground));
+  font-size: .68rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  max-width: 760px;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+
+.field {
+  display: grid;
+  gap: .55rem;
+}
+
+.field > span {
+  color: rgba(255,255,255,.62);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 1rem;
+  background: rgba(255,255,255,.035);
+  color: white;
+  outline: none;
+  padding: .9rem 1rem;
+  transition: border-color .2s ease, background .2s ease;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: rgba(255,255,255,.35);
+  background: rgba(255,255,255,.055);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(255,255,255,.28);
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  color: rgba(255,255,255,.65);
+  transition: all .2s ease;
+}
+
+.social:hover {
+  color: white;
+  border-color: rgba(255,255,255,.3);
+  transform: translateY(-2px);
+}
+
+.stat {
+  display: grid;
+  gap: .25rem;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 1.2rem;
+  padding: 1rem;
+  background: rgba(255,255,255,.025);
+}
+
+.stat strong {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+}
+
+.stat span {
+  color: rgba(255,255,255,.45);
+  font-size: .68rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-rise {
+  animation: fade-rise .8s ease-out both;
+}
+
+.animate-fade-rise-delay {
+  animation: fade-rise .8s ease-out .2s both;
+}
+
+.animate-fade-rise-delay-2 {
+  animation: fade-rise .8s ease-out .4s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
